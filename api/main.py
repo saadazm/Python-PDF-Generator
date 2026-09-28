@@ -5,7 +5,8 @@ import tempfile
 import zipfile
 
 from fastapi import Depends, FastAPI, File, Form, HTTPException, UploadFile
-from fastapi.responses import FileResponse, StreamingResponse
+from fastapi.responses import FileResponse, RedirectResponse, StreamingResponse
+from fastapi.staticfiles import StaticFiles
 from starlette.background import BackgroundTask
 
 from pdf_engine import TEMPLATES, generate_pdf
@@ -14,12 +15,21 @@ from .auth import charge_quota, get_api_key_record, require_api_key
 from .models import GenerateRequest
 
 MAX_BATCH_ROWS = 500
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+STATIC_DIR = os.path.join(REPO_ROOT, "static")
 
 app = FastAPI(
     title="Styled PDF Generator API",
     description="Generate bordered, tab-labeled PDFs (notes, invoices, certificates, receipts, memos, worksheets) from JSON.",
     version="0.1.0",
 )
+
+app.mount("/builder", StaticFiles(directory=STATIC_DIR, html=True), name="builder")
+
+
+@app.get("/")
+def root():
+    return RedirectResponse(url="/builder/builder.html")
 
 
 @app.get("/healthz")
