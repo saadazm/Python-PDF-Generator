@@ -24,7 +24,7 @@ The tab contains an **icon** (in this example, `lightbulb.gif`) and styled text 
 #### **Requirements**
 
 ```bash
-pip install reportlab
+pip install -r requirements.txt
 ```
 
 #### **Usage**
@@ -33,7 +33,7 @@ pip install reportlab
 * Run:
 
 ```bash
-python pdf_tab_note.py
+python generatepdf.py
 ```
 
 * The generated PDF will be saved in the same folder.
