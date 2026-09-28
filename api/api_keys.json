@@ -1,0 +1,20 @@
+{
+  "demo-free-key": {
+    "tier": "free",
+    "quota_limit": 20,
+    "quota_used": 0,
+    "quota_period": null,
+    "brand": null
+  },
+  "demo-pro-key": {
+    "tier": "pro",
+    "quota_limit": 2000,
+    "quota_used": 0,
+    "quota_period": null,
+    "brand": {
+      "tab_fill_color": "#0B1F3A",
+      "tab_text_color": "#FFFFFF",
+      "logo_path": null
+    }
+  }
+}
